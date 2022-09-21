@@ -1,0 +1,292 @@
+rconsolename('Zenox Hub')
+rconsoleprint('Zenox hub execution waeit pls uwu owo')
+
+wait(5)
+
+rconsoleinfo('Zenox hub executed with succes daddy :3')
+
+
+local Config = {
+    WindowName = "Zenox personal HUB",
+	Color = Color3.fromRGB(0,0,255),
+	Keybind = Enum.KeyCode.RightControl}
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/BracketV3.lua"))()
+local Window = Library:CreateWindow(Config, game:GetService("CoreGui"))
+local Players = game:GetService("Players")
+
+local Tab1 = Window:CreateTab("Universal")
+local Tab2 = Window:CreateTab("UI Settings")
+
+local Section1 = Tab1:CreateSection("First Section")
+local Section2 = Tab1:CreateSection("Local Player")
+local Section3 = Tab2:CreateSection("Menu")
+local Section4 = Tab2:CreateSection("Background")
+
+local Label1 = Section1:CreateLabel("Label 1")
+Label1:UpdateText("lol")
+-------------
+local Button1 = Section1:CreateButton("IY", function()
+	print("Click Button ")
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+local Button2 = Section1:CreateButton("CMD-X", function()
+	print("Click Button ")
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source",true))()
+end)
+
+local Button3 = Section1:CreateButton("Simple SPY", function()
+	print("Click Button ")
+	game:GetService("ReplicatedStorage").RemoteEvent1:FireServer()
+end)
+
+
+	local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))()
+
+    local notif = Notification.new("success", "Synapse détecté", "Vous pouvez utiliser 100% du script!")
+    notif:changeHeading("New Heading") -- Args(<string> NewHeading)
+    notif:changeBody("New Body") -- Args(<string> NewBody)
+    notif:deleteTimeout(3) -- Args(<number> DeleteWaitTime)
+    notif:delete()
+
+
+	if syn then Notification.new("success", "Synapse detected", "Enjoy full script")
+end
+
+
+local Slider1 = Section2:CreateSlider("WalkSpeed", 16,250,nil,true, function(Value)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+end)
+Slider1:AddToolTip("Wait for update so i can make it bypass games maybe lol idk")
+Slider1:SetValue(16)
+
+
+-------------
+local Toggle3 = Section3:CreateToggle("UI Toggle", nil, function(State)
+	Window:Toggle(State)
+end)
+Toggle3:CreateKeybind(tostring(Config.Keybind):gsub("Enum.KeyCode.", ""), function(Key)
+	Config.Keybind = Enum.KeyCode[Key]
+end)
+Toggle3:SetState(true)
+
+local Colorpicker3 = Section3:CreateColorpicker("UI Color", function(Color)
+	Window:ChangeColor(Color)
+end)
+Colorpicker3:UpdateColor(Config.Color)
+
+-- credits to jan for patterns
+local Dropdown3 = Section4:CreateDropdown("Image", {"Default","Hearts","Abstract","Hexagon","Circles","Lace With Flowers","Floral"}, function(Name)
+	if Name == "Default" then
+		Window:SetBackground("2151741365")
+	elseif Name == "Hearts" then
+		Window:SetBackground("6073763717")
+	elseif Name == "Abstract" then
+		Window:SetBackground("6073743871")
+	elseif Name == "Hexagon" then
+		Window:SetBackground("6073628839")
+	elseif Name == "Circles" then
+		Window:SetBackground("6071579801")
+	elseif Name == "Lace With Flowers" then
+		Window:SetBackground("6071575925")
+	elseif Name == "Floral" then
+		Window:SetBackground("5553946656")
+	end
+end)
+Dropdown3:SetOption("Default")
+
+local Colorpicker4 = Section4:CreateColorpicker("Color", function(Color)
+	Window:SetBackgroundColor(Color)
+end)
+Colorpicker4:UpdateColor(Color3.new(1,1,1))
+
+local Slider3 = Section4:CreateSlider("Transparency",0,1,nil,false, function(Value)
+	Window:SetBackgroundTransparency(Value)
+end)
+Slider3:SetValue(0)
+
+local Slider4 = Section4:CreateSlider("Tile Scale",0,1,nil,false, function(Value)
+	Window:SetTileScale(Value)
+end)
+Slider4:SetValue(0.5)
+
+
+if game.PlaceId == 6574375780 then
+		Notification.new("information", "Jeu compatible", "Nok piece detected")
+	--                                      NOK PIECE!
+
+	-- VARIABLES
+	local mobs = {} 
+	getgenv().mob = nil 
+
+	-- MOBS
+	for _,v in pairs(game:GetService("Workspace").Lives:GetChildren()) do 
+	insert = true -- VALUE TO CHECK THE MOB
+	for _,v2 in pairs(mobs) do if v2 == v.Name then insert = false end end 
+	if insert then table.insert(mobs, v.Name) end 
+	end
+
+
+	-- MAIN
+	local Tab1 = Window:CreateTab("Nok Piece")
+	local Section1 = Tab1:CreateSection("Mob Farm") 
+
+	local Dropdown1 = Section1:CreateDropdown("Choose Mob", mobs, function(v)  
+	getgenv().mob = v
+	end)
+
+	local Toggle2 = Section1:CreateToggle("Autofarm ON", nil, function(v) 
+	getgenv().autofarmmobs = v
+	while wait() do -- 
+		if getgenv().autofarmmobs == false then return end 
+		if getgenv().mob == nil then 
+			game.StarterGui:SetCore("SendNotification", { 
+				Title = "Error!", -- 
+				Text = "Sélectionne un mob en premier", -- 
+				Icon = "", 
+				Duration = 2.5 
+			})
+			getgenv().autofarmmobs = false 
+			return -- 
+			end
+		local mob = game:GetService("Workspace").Lives:FindFirstChild(getgenv().mob)
+		if mob == nil then
+			game.StarterGui:SetCore("SendNotification", { 
+				Title = "Info!", 
+				Text = "Il n'y à plus de mob Attends que ils respawn", -- 
+				Icon = "", 
+				Duration = 2.5 
+			})
+			while wait() do 
+				wait() 
+				if getgenv().autofarmmobs == false then return end 
+				if game:GetService("Workspace").Lives:FindFirstChild(getgenv().mob) ~= nil then break; end
+			end 
+		else
+			local mob2 = mob
+			while wait() do
+				mob = game:GetService("Workspace").Lives:FindFirstChild(getgenv().mob)
+				if mob ~= mob2 then break; end
+				if getgenv().autofarmmobs == false then return end 
+				if mob ~= nil then
+					if mob:FindFirstChild("Humanoid") then
+						if mob.Humanoid.Health == 0 then wait(0.1) mob:Destroy() break; end 
+					end
+					if mob:FindFirstChild("HumanoidRootPart") then
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = mob.HumanoidRootPart.CFrame * CFrame.new(0,0,2) 
+					end
+				end
+				wait() 
+			end
+		end
+	end
+	end)
+
+
+
+	game:GetService("Workspace").Lives.ChildAdded:Connect(function() 
+	for _,v2 in pairs(mobs) do table.remove(mobs, _) end 
+
+	for _,v in pairs(game:GetService("Workspace").Lives:GetChildren()) do -- 
+		insert = true 
+		for _,v2 in pairs(mobs) do if v2 == v.Name then insert = false end end 
+		if insert then table.insert(mobs, v.Name) end 
+	end
+	Dropdown1:Refresh(mobs)
+	end)
+
+	game:GetService("Workspace").Lives.ChildRemoved:Connect(function() 
+	for _,v2 in pairs(mobs) do table.remove(mobs, _) end 
+	
+	for _,v in pairs(game:GetService("Workspace").Lives:GetChildren()) do 
+		insert = true 
+		for _,v2 in pairs(mobs) do if v2 == v.Name then insert = false end end 
+		if insert then table.insert(mobs, v.Name) end 
+	end
+	Dropdown1:Refresh(mobs)
+	end)
+	end
+	
+	_G.FlySpeed = 50
+	if _G.Setup then
+		game.Players.LocalPlayer:Kick("[ZenoxHUB] You can't execute the script Twice!")
+	else
+		_G.Setup = true
+	end
+	 
+	-- UI And Fly Functions
+	Section2:CreateButton("Fly Bypassed (KeyBind 'G')", function()
+		spawn(function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/LegitH3x0R/Roblox-Scripts/main/AEBypassing/RootAnchor.lua"))()
+	 
+			local UIS = game:GetService("UserInputService")
+			local OnRender = game:GetService("RunService").RenderStepped
+			
+			local Player = game:GetService("Players").LocalPlayer
+			local Character = Player.Character or Player.CharacterAdded:Wait()
+			
+			local Camera = workspace.CurrentCamera
+			local Root = Character:WaitForChild("HumanoidRootPart")
+			local C1, C2, C3;
+			local Nav = {Flying = false, Forward = false, Backward = false, Left = false, Right = false}
+			C1 = UIS.InputBegan:Connect(function(Input)
+				if Input.UserInputType == Enum.UserInputType.Keyboard then
+					if Input.KeyCode == Enum.KeyCode.G then
+						Nav.Flying = not Nav.Flying
+						Root.Anchored = Nav.Flying
+					elseif Input.KeyCode == Enum.KeyCode.W then
+						Nav.Forward = true
+					elseif Input.KeyCode == Enum.KeyCode.S then
+						Nav.Backward = true
+					elseif Input.KeyCode == Enum.KeyCode.A then
+						Nav.Left = true
+					elseif Input.KeyCode == Enum.KeyCode.D then
+						Nav.Right = true
+					end
+				end
+			end)
+			
+			C2 = UIS.InputEnded:Connect(function(Input)
+				if Input.UserInputType == Enum.UserInputType.Keyboard then
+					if Input.KeyCode == Enum.KeyCode.W then
+						Nav.Forward = false
+					elseif Input.KeyCode == Enum.KeyCode.S then
+						Nav.Backward = false
+					elseif Input.KeyCode == Enum.KeyCode.A then
+						Nav.Left = false
+					elseif Input.KeyCode == Enum.KeyCode.D then
+						Nav.Right = false
+					end
+				end
+			end)
+			
+			C3 = Camera:GetPropertyChangedSignal("CFrame"):Connect(function()
+				if Nav.Flying then
+					Root.CFrame = CFrame.new(Root.CFrame.Position, Root.CFrame.Position + Camera.CFrame.LookVector)
+				end
+			end)
+			
+			while true do
+				local Delta = OnRender:Wait()
+				if Nav.Flying then
+					if Nav.Forward then
+						Root.CFrame = Root.CFrame + (Camera.CFrame.LookVector * (Delta * _G.FlySpeed))
+					end
+					if Nav.Backward then
+						Root.CFrame = Root.CFrame + (-Camera.CFrame.LookVector * (Delta * _G.FlySpeed))
+					end
+					if Nav.Left then
+						Root.CFrame = Root.CFrame + (-Camera.CFrame.RightVector * (Delta * _G.FlySpeed))
+					end
+					if Nav.Right then
+						Root.CFrame = Root.CFrame + (Camera.CFrame.RightVector * (Delta * _G.FlySpeed))
+					end
+				end
+			end
+		end)
+	end)
+	 
+	Section2:CreateSlider("Fly Speed", 16,250,nil,true, function(Value)
+		_G.FlySpeed = (Value)
+	end)
